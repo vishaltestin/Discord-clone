@@ -16,7 +16,7 @@ const schema = z.object({
 });
 
 const Register = () => {
-    const { handleSubmit, register, control, formState: { errors } } = useForm({
+    const { handleSubmit, reset, register, control, formState: { errors } } = useForm({
         resolver: zodResolver(schema),
     });
     const containerStyle = {
@@ -27,10 +27,8 @@ const Register = () => {
         console.log(data);
         try {
             await axios.post("/api/auth/register", data);
-            // Reset the form, refresh the router, and reload the page
-            // form.reset();
-            // router.refresh();
-            console.log('User created:');
+            reset()
+            router.push('/login');
         } catch (error) {
             console.error('Error creating user:', error);
         }
