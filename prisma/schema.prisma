@@ -19,5 +19,4 @@ model User {
   day         String
   month       String
   year        String
-
 }
