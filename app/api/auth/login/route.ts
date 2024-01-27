@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { db } from "@/lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
-import { NextApiResponse, NextApiRequest } from 'next';
 import { generateToken } from '../../../utils/auth';
 
 
@@ -13,7 +12,7 @@ const schema = z.object({
 export async function POST(req: Request, res: NextResponse) {
     try {
         const { email, password } = await req.json();
-        console.log(req.body,"vishal")
+        console.log(req.body, "vishal")
         if (!email || !password) {
             return new NextResponse('Invalid request. Email and password are required.', { status: 400 });
         }
@@ -37,8 +36,15 @@ export async function POST(req: Request, res: NextResponse) {
                 userEmail: user.email,
             };
             const token = generateToken(res, tokenPayload);
-            // res.json({ token, user });
-           return NextResponse.json({user,token});
+            const response = NextResponse.json({ user, token });
+            response.cookies.set("token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV !== "development",
+                sameSite: "strict",
+                maxAge: 60 * 60 * 1000,
+            })
+
+            return response
         } catch (error) {
             console.error('Error logging in:', error);
             return new NextResponse('Internal Error', { status: 500 });
