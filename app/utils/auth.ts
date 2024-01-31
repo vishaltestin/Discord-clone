@@ -1,16 +1,16 @@
 import jwt from "jsonwebtoken";
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 interface TokenPayload {
-    userId: number;
-    userEmail: string;
+  userId: number;
+  userEmail: string;
 }
 
 const generateToken = (res: NextResponse, payload: TokenPayload) => {
-    const jwtSecret = process.env.JWT_SECRET || "";
-    const token = jwt.sign(payload, jwtSecret, {
-        expiresIn: "1h",
-    });
-    return token;
+  const jwtSecret = process.env.JWT_SECRET || "";
+  const token = jwt.sign(payload, jwtSecret, {
+    expiresIn: "1h",
+  });
+  return token;
 };
 export { generateToken };

@@ -4,15 +4,16 @@ import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
 import { generateToken } from '../../../utils/auth';
 
-
 const schema = z.object({
-    email: z.string().email({ message: "Invalid email address" }), username: z.string().min(3, { message: "Username must be at least 3 characters" }).max(20, { message: "Username must be at most 20 characters" }),
-    password: z.string().min(6, { message: "Password must be at least 6 characters" }), month: z.string(),
+    email: z.string().email({ message: "Invalid email address" }),
+    password: z.string().min(6, { message: "Password must be at least 6 characters" })
 });
+
 export async function POST(req: Request, res: NextResponse) {
+
     try {
-        const { email, password } = await req.json();
-        console.log(req.body, "vishal")
+        const data = await req.json()
+        const { email, password } = schema.parse(data);
         if (!email || !password) {
             return new NextResponse('Invalid request. Email and password are required.', { status: 400 });
         }
