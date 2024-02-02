@@ -20,7 +20,13 @@ const Register = () => {
         resolver: zodResolver(schema),
     });
     const containerStyle = {
-        backgroundImage: "url('images/discordbg.png')",
+        backgroundImage: "url('/images/discordbg.png')",
+        backgroundSize: 'cover',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%'
     };
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -35,7 +41,7 @@ const Register = () => {
     };
     const router = useRouter()
     return (
-        <>
+        <div style={containerStyle}>
             <div className="bg-cover justify-center items-center hidden min-[484px]:flex" style={containerStyle}>
                 <div className="flex login bg-[#313338] h-full w-[30rem] rounded-sm justify-between shadow-md">
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -281,7 +287,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
