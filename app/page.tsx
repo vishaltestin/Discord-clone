@@ -1,5 +1,5 @@
 "use client"
-import { redirect } from "next/navigation";
+import { redirect  } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -23,7 +23,6 @@ const Home = () => {
     }
 
     const fetchData = async () => {
-      console.group(user.userId)
       try {
         const response = await axios.post('/api/userinfo', user);
         const data = response.data;
@@ -31,6 +30,8 @@ const Home = () => {
         if (data.success) {
           setProfile(data.data);
           console.log(data.data)
+
+
         } else {
           redirect('/login');
         }
@@ -53,8 +54,6 @@ const Home = () => {
   if (!profile) {
     return <div>Error fetching profile data</div>;
   }
-
-  // Rest of your logic here using the 'profile' variable
 
   return (
     <div>
