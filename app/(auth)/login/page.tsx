@@ -10,6 +10,8 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
+import { useState } from "react";
+import FormLoader from "@/components/FormLoader";
 const schema = z.object({
     email: z.string().email({ message: "Invalid email address" }),
     password: z
@@ -18,6 +20,7 @@ const schema = z.object({
 });
 
 const Login = () => {
+    const [loading, setLoading] = useState(false)
     const router = useRouter();
     const containerStyle = {
         backgroundImage: "url('images/discordbg.png')",
@@ -32,10 +35,10 @@ const Login = () => {
     });
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        console.log(data);
         try {
+            setLoading(true)
             const response = await axios.post("/api/auth/login", data);
-            reset();
+            // reset();
             const {
                 token,
                 user: { id: userId },
@@ -45,6 +48,8 @@ const Login = () => {
             router.push("/");
         } catch (error) {
             console.error("Error Log in user:", error);
+        }finally {
+            setLoading(false)
         }
     };
     return (
@@ -102,10 +107,11 @@ const Login = () => {
                                     </p>
                                 </div>
                                 <button
-                                    className="h-11 w-full rounded-sm bg-[#5865f2] my-2 hover:bg-[#434ece] text-white font-semibold"
+                                    className="h-11 w-full rounded-sm bg-[#5865f2] my-2 hover:bg-[#434ece] text-white font-semibold relative"
                                     type="submit"
+                                    disabled={loading}
                                 >
-                                    Log in
+                                    {!loading ? 'Log in' : <FormLoader/>}
                                 </button>
                             </form>
                             <p className="text-[13px]">
