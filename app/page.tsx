@@ -1,14 +1,14 @@
 "use client"
-import { redirect  } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState(null);
+  const [serverFound, setserverFound] = useState(false)
 
   useEffect(() => {
-    console.log('test')
     const userString = localStorage.getItem('authData');
 
     if (!userString) {
@@ -18,7 +18,6 @@ const Home = () => {
     const user = JSON.parse(userString);
 
     if (!user || !user.userId) {
-      console.error('User data is missing userId property');
       redirect('/login');
     }
 
@@ -29,14 +28,19 @@ const Home = () => {
 
         if (data.success) {
           setProfile(data.data);
-          console.log(data.data)
-
-
+          const userProfile = data.data;
+          const response = await axios.post('/api/profileServer', userProfile);
+          if (response.data.success) {
+            const server = response.data.data;
+            setserverFound(true)
+            return redirect(`/servers/${server.id}`);
+          } else if (response.data.status === 404) {
+            setserverFound(false)
+          }
         } else {
           redirect('/login');
         }
       } catch (error) {
-        console.error(error);
         redirect('/login');
       } finally {
         setLoading(false);
@@ -55,11 +59,13 @@ const Home = () => {
     return <div>Error fetching profile data</div>;
   }
 
-  return (
-    <div>
-      create a server
-    </div>
-  );
+  if (!serverFound) {
+    return (
+      <div>
+        Create A server bro to start chatting with your buddies
+      </div>
+    )
+  }
 }
 
 export default Home;
