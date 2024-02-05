@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from "@/components/loader";
+import { InitialModal } from "@/components/Mod/initial-modal";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ const Home = () => {
   ;
 
   if (loading) {
-    return <Loader/>
+    return <Loader />
   }
 
   if (!profile) {
@@ -62,9 +63,7 @@ const Home = () => {
 
   if (!serverFound) {
     return (
-      <div>
-        Create A server bro to start chatting with your buddies
-      </div>
+      <InitialModal />
     )
   }
 }
