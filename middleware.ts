@@ -1,22 +1,25 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const publicPath = path === "/login" || path === "/register";
+  const publicPaths = ["/login", "/register", "/api/uploadthing"];
   const token = request.cookies.get("token")?.value || "";
 
-  if (publicPath && token) {
+  if (publicPaths.includes(path) && token) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (!publicPath && !token) {
+  if (!publicPaths.includes(path) && !token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
+
+  if (path === "/api/uploadthing" && !token) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
+
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/", "/login", "/register"],
+  matcher: ["/", "/login", "/register", "/api/uploadthing"],
 };
