@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from "@/components/loader";
-import { InitialModal } from "@/components/Mod/initial-modal";
+import { CreateServer } from "@/components/CreateServer";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -63,7 +63,7 @@ const Home = () => {
 
   if (!serverFound) {
     return (
-      <InitialModal />
+      <CreateServer />
     )
   }
 }

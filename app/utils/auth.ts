@@ -9,7 +9,7 @@ interface TokenPayload {
 const generateToken = (res: NextResponse, payload: TokenPayload) => {
   const jwtSecret = process.env.JWT_SECRET || "";
   const token = jwt.sign(payload, jwtSecret, {
-    expiresIn: "1h",
+    expiresIn: "7d",
   });
   return token;
 };

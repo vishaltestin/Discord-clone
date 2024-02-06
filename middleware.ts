@@ -14,12 +14,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (path === "/api/uploadthing" && !token) {
-    return new NextResponse("Unauthorized", { status: 401 });
-  }
+  // if (path === "/api/uploadthing" && !token) {
+  //   return new NextResponse("Unauthorized", { status: 401 });
+  // }
 
 }
 
 export const config = {
-  matcher: ["/", "/login", "/register", "/api/uploadthing"],
+  matcher: ["/", "/login", "/register"],
 };

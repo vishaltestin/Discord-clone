@@ -1,0 +1,20 @@
+.dialogContent::-webkit-scrollbar{
+    width: 6px;
+    background-color: #1a1b1e;
+    height: 6px;
+}
+
+
+.test:hover {
+    background-color: hsl( 228 calc( 1 * 6%) 32.5% / 0.3) !important;
+}
+
+@keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
