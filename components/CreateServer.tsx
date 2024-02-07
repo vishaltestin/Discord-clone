@@ -277,6 +277,11 @@ export const CreateServer = () => {
                       )}
                     />
                   </div>
+                  {showThirdDiv && (
+                    <Button variant="primary" disabled={isLoading} className="pl-8 pr-8 absolute right-4 bottom-3" type="submit">
+                      Create
+                    </Button>
+                  )}
                 </form>
               </Form>
             </div>
@@ -298,11 +303,6 @@ export const CreateServer = () => {
                 Back
               </Button>
             </>
-          )}
-          {showThirdDiv && (
-            <Button variant="primary" disabled={isLoading} className="pl-8 pr-8">
-              Create
-            </Button>
           )}
         </DialogFooter>
       </DialogContent>
