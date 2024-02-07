@@ -5,7 +5,6 @@ export const POST = async (req: Request, res: NextResponse) => {
     const data = await req.json()
     const id = data.id;
 
-    // Inside the POST handler
 try {
     const server = await db.server.findFirst({
         where: {
