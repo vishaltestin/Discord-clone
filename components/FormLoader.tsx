@@ -7,7 +7,7 @@ const FormLoader = () => {
             <div></div>
             <div></div>
         </div>
-        );
+    );
 }
 
 export default FormLoader;
