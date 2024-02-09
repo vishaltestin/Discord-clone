@@ -1,10 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { Eye, EyeOff } from 'lucide-react'
 import {
     useForm,
     SubmitHandler,
-    Controller,
     FieldValues,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +11,10 @@ import { z } from "zod";
 import axios from "axios";
 import { useState } from "react";
 import FormLoader from "@/components/FormLoader";
+
+type FormInputs = {
+    username: string;
+};
 const schema = z.object({
     email: z.string().email({ message: "Invalid email address" }),
     password: z
@@ -20,7 +23,8 @@ const schema = z.object({
 });
 
 const Login = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [viewPassword, setViewPassword] = useState<boolean>(false)
     const router = useRouter();
     const containerStyle = {
         backgroundImage: "url('images/discordbg.png')",
@@ -28,11 +32,16 @@ const Login = () => {
     const {
         handleSubmit,
         reset,
+        setError,
         register,
         formState: { errors },
     } = useForm({
         resolver: zodResolver(schema),
     });
+
+    const togglePasswordVisibility = () => {
+        setViewPassword((prevViewPassword) => !prevViewPassword);
+    };
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         try {
@@ -47,8 +56,20 @@ const Login = () => {
             localStorage.setItem("authData", JSON.stringify(authData));
             router.push("/");
         } catch (error) {
-            console.error("Error Log in user:", error);
-        }finally {
+            if (axios.isAxiosError(error)) {
+                const status = error.response?.status;
+                if (status === 401) {
+                    setError("email", {
+                        type: "manual",
+                        message: "Incorrect email address",
+                    });
+                } else if (status === 403) {
+                    setError("password", {
+                        type: "manual",
+                        message: "Incorrect password",
+                    });
+                }
+            }
             setLoading(false)
         }
     };
@@ -90,11 +111,19 @@ const Login = () => {
                                     <label className="font-bold text-xs text-[11px]">
                                         PASSWORD *
                                     </label>
-                                    <input
-                                        className="w-full h-10 rounded-sm bg-[#1e1f22] pl-2"
-                                        type="password"
-                                        {...register("password")}
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            className="w-full h-10 rounded-sm bg-[#1e1f22] pl-2"
+                                            type={viewPassword ? "text" : "password"}
+                                            {...register("password")}
+                                        />
+                                        {!viewPassword ? (
+                                            <Eye className="absolute right-2 top-2 cursor-pointer" onClick={togglePasswordVisibility} />
+                                        ) : (
+                                            <EyeOff className="absolute right-2 top-2 cursor-pointer" onClick={togglePasswordVisibility} />
+                                        )}
+                                    </div>
+
                                     {errors.password && (
                                         <p className="text-red-500 text-xs mt-1">
                                             {Array.isArray(errors.password.message)
@@ -111,7 +140,7 @@ const Login = () => {
                                     type="submit"
                                     disabled={loading}
                                 >
-                                    {!loading ? 'Log in' : <FormLoader/>}
+                                    {!loading ? 'Log in' : <FormLoader />}
                                 </button>
                             </form>
                             <p className="text-[13px]">

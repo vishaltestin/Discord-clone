@@ -29,7 +29,7 @@ export async function POST(req: Request, res: NextResponse) {
             const passwordMatch = await bcrypt.compare(password, user.password);
 
             if (!passwordMatch) {
-                return new NextResponse('Invalid credentials', { status: 401 });
+                return new NextResponse('Invalid credentials', { status: 403 });
             }
 
             const tokenPayload = {
