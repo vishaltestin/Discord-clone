@@ -17,9 +17,12 @@ export function middleware(request: NextRequest) {
   // if (path === "/api/uploadthing" && !token) {
   //   return new NextResponse("Unauthorized", { status: 401 });
   // }
+  if (path.startsWith("/servers/") && !token) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
 
 }
 
 export const config = {
-  matcher: ["/", "/login", "/register"],
+  matcher: ["/", "/login", "/register","/servers/:path*"],
 };
