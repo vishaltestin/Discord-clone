@@ -11,6 +11,7 @@ import { z } from "zod";
 import axios from "axios";
 import { useState } from "react";
 import FormLoader from "@/components/FormLoader";
+import Image from "next/image";
 
 type FormInputs = {
     username: string;
@@ -26,9 +27,6 @@ const Login = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [viewPassword, setViewPassword] = useState<boolean>(false)
     const router = useRouter();
-    const containerStyle = {
-        backgroundImage: "url('images/discordbg.png')",
-    };
     const {
         handleSubmit,
         reset,
@@ -77,7 +75,6 @@ const Login = () => {
         <>
             <div
                 className="hidden bg-cover min-[484px]:flex justify-center items-center h-screen"
-                style={containerStyle}
             >
                 <div className="login bg-[#313338] h-[408px] min-[836px]:w-[790px] rounded-md flex justify-between shadow-md">
                     <div className="left flex flex-col  w-[30rem] text-[#b5bac1]  items-center p-8">
@@ -158,10 +155,12 @@ const Login = () => {
                     </div>
 
                     <div className="hidden right h-full w-[19rem] min-[836px]:flex justify-center items-center flex-col">
-                        <img
+                        <Image
                             className="h-[10.8rem] w-[10.8rem] rounded-[0.3rem] relative -top-4"
-                            src="images/qr2.jpg"
-                            alt=""
+                            src="/images/qr2.jpg"
+                            height={172.8}
+                            width={172.8}
+                            alt="Qr Image"
                         />
                         <div className="last text-center relative -bottom-2 space-y-2">
                             <h2 className="font-semibold text-[#ebebeb] text-[1.5rem]">

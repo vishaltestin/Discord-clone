@@ -8,6 +8,7 @@ import { Separator } from "@radix-ui/react-dropdown-menu";
 import { ScrollArea } from "../ui/scroll-area";
 import { Server } from "@prisma/client";
 import { ServerNavigation } from "./ServerNavigation";
+import { Logout } from "../Logout";
 
 const Sidebar = () => {
     const [servers, setServers] = useState([]);
@@ -51,7 +52,7 @@ const Sidebar = () => {
             </ScrollArea>
             <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
                 <ModeToggle />
-                <Button variant={"discord"}/>
+                <Logout/>
             </div>
         </div>
     );

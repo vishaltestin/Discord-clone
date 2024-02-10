@@ -20,8 +20,6 @@ const Register = () => {
         resolver: zodResolver(schema),
     });
     const containerStyle = {
-        backgroundImage: "url('/images/discordbg.png')",
-        backgroundSize: 'cover',
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
