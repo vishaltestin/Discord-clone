@@ -22,6 +22,7 @@ export function Logout() {
             const data = response
             if (response.status === 200) {
                 console.log('Logout successful');
+                localStorage.removeItem('authData')
                 router.push('/login')
             } else {
                 console.log(`Logout failed with status: ${response.status}`);

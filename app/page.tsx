@@ -4,20 +4,24 @@ import { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import Loader from "@/components/loader";
 import { CreateServer } from "@/components/CreateServer";
+import { Profile } from "@prisma/client";
 
-const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState(null);
-  const [serverFound, setserverFound] = useState(false)
+type AuthData = {
+  token: string;
+  userId: string;
+};
+
+const Home: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [serverFound, setserverFound] = useState<boolean>(false)
   const serverRef = useRef({ id: undefined });
   useEffect(() => {
     const userString = localStorage.getItem('authData');
     if (!userString) {
       redirect('/login');
     }
-
-    const user = JSON.parse(userString);
-
+    const user: AuthData = JSON.parse(userString);
     if (!user || !user.userId) {
       redirect('/login');
     }

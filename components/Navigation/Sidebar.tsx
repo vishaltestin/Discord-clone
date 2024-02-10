@@ -19,7 +19,6 @@ const Sidebar = () => {
                 const data = response.data;
                 if (data.success) {
                     setServers(data.data);
-                    console.log(data.data, "test bro ")
                 } else {
                     console.log("function did not work bruh")
                 }
