@@ -6,6 +6,7 @@ import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -22,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
-          inter.className,
-          "bg-white dark:bg-[#313338]"
-        )}>
-          <NextSSRPlugin
+        inter.className,
+        "bg-white dark:bg-[#313338]"
+      )}>
+        <NextSSRPlugin
           /**
            * The `extractRouterConfig` will extract **only** the route configs
            * from the router to prevent additional information from being
@@ -35,11 +36,12 @@ export default function RootLayout({
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
         <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem={false}
-        storageKey="discord-theme"
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          storageKey="discord-theme"
         >
+          <ModalProvider />
           {children}
         </ThemeProvider>
       </body>

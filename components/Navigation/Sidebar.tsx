@@ -2,15 +2,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Action } from "./Action";
-import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { ScrollArea } from "../ui/scroll-area";
 import { Server } from "@prisma/client";
 import { ServerNavigation } from "./ServerNavigation";
 import { Logout } from "../Logout";
+import { useModal } from "@/hooks/useModal";
 
 const Sidebar = () => {
+    const { isOpen, onClose, type } = useModal()
+    const isModalOpen = isOpen && type === 'createServer'
     const [servers, setServers] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -23,11 +25,11 @@ const Sidebar = () => {
                     console.log("function did not work bruh")
                 }
             } catch (error) {
-                console.log
+                console.log(error)
             }
         };
         fetchData()
-    }, [])
+    }, [isModalOpen])
 
 
     return (
