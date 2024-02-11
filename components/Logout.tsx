@@ -34,12 +34,12 @@ export function Logout() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button className="bg-transparent border-0" size="icon">
-                    <LogOut className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+                <Button className="bg-transparent border-0 hover:bg-[#fff] dark:hover:bg-[#313338]" size="icon">
+                    <LogOut className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all text-black  dark:text-white" />
                     <span className="sr-only">Logout</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white dark:bg-[#313338] cursor-pointer">
+            <DropdownMenuContent align="end" className="cursor-pointer">
                 <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                     LogOut
                 </DropdownMenuItem>
