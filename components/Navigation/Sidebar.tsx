@@ -1,35 +1,30 @@
-"use client"
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Action } from "./Action";
 import { ModeToggle } from "../mode-toggle";
-import { Separator } from "@radix-ui/react-dropdown-menu";
+
 import { ScrollArea } from "../ui/scroll-area";
-import { Server } from "@prisma/client";
 import { ServerNavigation } from "./ServerNavigation";
 import { Logout } from "../Logout";
-import { useModal } from "@/hooks/useModal";
+import { presentProfile } from "@/lib/Profile";
+import { redirect } from "next/navigation";
+import { db } from "@/lib/db";
+import { Separator } from "../ui/separator";
 
-const Sidebar = () => {
-    const { isOpen, onClose, type } = useModal()
-    const isModalOpen = isOpen && type === 'createServer'
-    const [servers, setServers] = useState([]);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.post('/api/AllServers');
-                const data = response.data;
-                if (data.success) {
-                    setServers(data.data);
-                } else {
-                    console.log("function did not work bruh")
+const Sidebar = async () => {
+    const profile = await presentProfile();
+
+    if (!profile) {
+        return redirect("/");
+    }
+
+    const servers = await db.server.findMany({
+        where: {
+            members: {
+                some: {
+                    profileId: profile.id
                 }
-            } catch (error) {
-                console.log(error)
             }
-        };
-        fetchData()
-    }, [isModalOpen])
+        }
+    });
 
 
     return (
@@ -41,7 +36,7 @@ const Sidebar = () => {
                 className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto"
             />
             <ScrollArea className="flex-1 w-full">
-                {servers.map((server: Server) => (
+                {servers.map((server) => (
                     <div key={server.id} className="mb-4">
                         <ServerNavigation
                             id={server.id}
@@ -53,7 +48,7 @@ const Sidebar = () => {
             </ScrollArea>
             <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
                 <ModeToggle />
-                <Logout/>
+                <Logout />
             </div>
         </div>
     );

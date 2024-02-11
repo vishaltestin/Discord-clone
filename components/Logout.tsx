@@ -39,8 +39,8 @@ export function Logout() {
                     <span className="sr-only">Logout</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white dark:bg-[#313338]">
-                <DropdownMenuItem onClick={handleLogout}>
+            <DropdownMenuContent align="end" className="bg-white dark:bg-[#313338] cursor-pointer">
+                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                     LogOut
                 </DropdownMenuItem>
             </DropdownMenuContent>

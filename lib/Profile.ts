@@ -1,10 +1,9 @@
-import { NextRequest } from "next/server";
 import { getDataFromToken } from "@/helpers/getDataFromtoken";
 import { db } from "./db";
 
-export const presentProfile = async (req: NextRequest) => {
+export const presentProfile = async () => {
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         if (!userId) {
             return null
         }

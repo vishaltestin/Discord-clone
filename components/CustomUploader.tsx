@@ -75,7 +75,7 @@ export function MultiUploader({
                     <path d="M40 29C37.794 29 36 30.794 36 33C36 35.207 37.794 37 40 37C42.206 37 44 35.207 44 33C44 30.795 42.206 29 40 29Z" fill="currentColor"></path>
                     <path d="M48 26.001H46.07C45.402 26.001 44.777 25.667 44.406 25.111L43.594 23.891C43.223 23.335 42.598 23 41.93 23H38.07C37.402 23 36.777 23.335 36.406 23.89L35.594 25.11C35.223 25.667 34.598 26 33.93 26H32C30.895 26 30 26.896 30 28V39C30 40.104 30.895 41 32 41H48C49.104 41 50 40.104 50 39V28C50 26.897 49.104 26.001 48 26.001ZM40 39C36.691 39 34 36.309 34 33C34 29.692 36.691 27 40 27C43.309 27 46 29.692 46 33C46 36.31 43.309 39 40 39Z" fill="currentColor"></path>
                     <g>
-                        <text x="20" y="60" font-family="Arial" font-size="11" fill="white" font-weight="bold">Loading</text>
+                        <text x="20" y="60" fontFamily="Arial" font-size="11" fill="white" fontWeight="bold">Loading</text>
                     </g>
                 </svg>
             )}

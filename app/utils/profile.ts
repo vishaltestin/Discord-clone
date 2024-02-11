@@ -1,3 +1,4 @@
+import { getDataFromToken } from '@/helpers/getDataFromtoken';
 import { db } from '@/lib/db';
 const getRandomImageUrl = async () => {
   const response = await fetch('https://source.unsplash.com/random/800x600');
@@ -5,7 +6,8 @@ const getRandomImageUrl = async () => {
   return imageUrl;
 };
 
-export const initialProfile = async (id: string) => {
+export const initialProfile = async () => {
+  const id = getDataFromToken()
   const profile = await db.profile.findUnique({
     where: {
       userId: id,
