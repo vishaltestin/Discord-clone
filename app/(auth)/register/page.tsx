@@ -28,7 +28,6 @@ const Register = () => {
     };
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        console.log(data);
         try {
             await axios.post("/api/auth/register", data);
             reset()

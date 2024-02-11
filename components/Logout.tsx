@@ -21,7 +21,6 @@ export function Logout() {
             const response = await axios.get('/api/auth/logout');
             const data = response
             if (response.status === 200) {
-                console.log('Logout successful');
                 localStorage.removeItem('authData')
                 router.push('/login')
             } else {
