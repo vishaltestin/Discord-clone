@@ -109,9 +109,9 @@ export const CreateServer = () => {
   const customStyles = {
     borderRadius: '8px',
     border: '1px solid hsl( 228 calc( 1 * 6%) 32.5% / 0.48)',
-    backgroundColor: 'hsl( 223 calc( 1 * 6.7%) 20.6% / 1)',
     marginBottom: '8px',
     display: 'flex',
+    color: 'white',
     alignItems: 'center',
     cursor: 'pointer',
     width: '100%',
@@ -169,9 +169,8 @@ export const CreateServer = () => {
 
   return (
     <Dialog open>
-      <DialogContent className="bg-[#313338] rounded border-transparent pb-0 pr-0 pl-0" style={{
+      <DialogContent className="bg-white dark:bg-[#313338] rounded border-transparent pb-0 pr-0 pl-0 transition-all" style={{
         borderRadius: '7px',
-        transition: "ease"
       }}>
         <DialogHeader className="px-6">
           <DialogTitle className="text-2xl text-center font-bold">
@@ -181,7 +180,7 @@ export const CreateServer = () => {
                 ? "Customize Your Server"
                 : "Tell Us More About Your Server"}
           </DialogTitle>
-          <DialogDescription className="text-center" style={{ color: 'hsl( 215 calc( 1 * 8.8%) 73.3% / 1)' }}>
+          <DialogDescription className="text-center ext-black dark:text-[#B5BAC1]">
             {!showSecondDiv && !showThirdDiv
               ? "Your server is where you and your friends hang out. Make yours and start talking."
               : showThirdDiv
@@ -197,7 +196,7 @@ export const CreateServer = () => {
                   {(index !== 7 && index !== 8) && (
                     <Button
                       style={customStyles}
-                      className="test"
+                      className="dark:text-white text-black bg-white dark:bg-[#313338] test"
                       onClick={() => handleButtonClick(index)}
                     >
                       <Image src={buttonContent[key].path} alt={buttonContent[key].text} width={40} height={40} style={imageStyle} />
@@ -208,7 +207,7 @@ export const CreateServer = () => {
                     </Button>
                   )}
                   {index === 0 && (
-                    <div style={{ fontSize: '16px', fontWeight: '600', marginTop: '16px', marginBottom: '10px', color: 'hsl( 215 calc( 1 * 8.8%) 73.3% / 1) ' }}>
+                    <div className=' text-black dark:text-[#B5BAC1]' style={{ fontSize: '16px', fontWeight: '600', marginTop: '16px', marginBottom: '10px'}}>
                       Start from template
                     </div>
                   )}
@@ -220,7 +219,7 @@ export const CreateServer = () => {
           {showSecondDiv && selectedButtonIndex !== null && (
             <div style={{ marginBottom: '8px' }}>
               {Object.keys(buttonContent).slice(7, 9).map((key, index) => (
-                <Button style={customStyles} className="test" key={key} onClick={() => handleButtonClick(7 + index)}>
+                <Button style={customStyles} className="dark:text-white text-black bg-white dark:bg-[#313338] test" key={key} onClick={() => handleButtonClick(7 + index)}>
                   <Image src={buttonContent[key].path} alt={buttonContent[key].text} width={40} height={40} style={imageStyle} />
                   <div style={divStyle}>
                     {buttonContent[key].text}
@@ -260,14 +259,14 @@ export const CreateServer = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel
-                            className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70"
+                            className="uppercase text-xs font-bold text-zinc-500 dark:text-[#adb2b9]"
                           >
                             Server name
                           </FormLabel>
                           <FormControl>
                             <Input
                               disabled={isLoading}
-                              className="bg-[#1e1f22] border-0 focus-visible:ring-0 text-white focus-visible:ring-offset-0"
+                              className="bg-[#e6e6e9] dark:text-white border-black dark:bg-[#1e1f22] border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                               placeholder="Enter server name"
                               {...field}
                             />
@@ -288,18 +287,18 @@ export const CreateServer = () => {
           )}
 
         </div>
-        <DialogFooter className="w-full p-3 bg-[#2b2d31]" style={{
+        <DialogFooter className="w-full p-3 bg-white dark:bg-[#2b2d31]" style={{
           display: "flex",
           justifyContent: `${!showThirdDiv ? 'start' : 'space-between'}`
         }}>
           {showThirdDiv && (
-            <Button onClick={handleBackButtonClick}>
+            <Button className="bg-transparent hover:bg-transparent text-black dark:text-white" onClick={handleBackButtonClick}>
               Back
             </Button>
           )}
           {showSecondDiv && !showThirdDiv && (
             <>
-              <Button onClick={handleBackButtonClick}>
+              <Button className="bg-transparent hover:bg-transparent text-black dark:text-white" onClick={handleBackButtonClick}>
                 Back
               </Button>
             </>

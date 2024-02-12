@@ -6,7 +6,7 @@ const AuthLayout = ({
     children: React.ReactNode;
 }>) => {
     return (
-        <div className="h-full" style={
+        <div className="h-screen" style={
             {
                 backgroundImage: "url('/images/discordbg.png')",
                 backgroundSize: 'cover',

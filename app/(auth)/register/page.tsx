@@ -39,7 +39,7 @@ const Register = () => {
     const router = useRouter()
     return (
         <div style={containerStyle}>
-            <div className="bg-cover justify-center items-center hidden min-[484px]:flex">
+            <div className="justify-center items-center hidden min-[484px]:flex">
                 <div className="flex login bg-[#313338] h-full w-[30rem] rounded-sm justify-between shadow-md">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="left flex flex-col w-[30rem] text-[#b5bac1] items-center p-8">
