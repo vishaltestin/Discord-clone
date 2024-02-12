@@ -67,7 +67,7 @@ export const InviteModal = () => {
           <div className="flex items-center mt-2 gap-x-2">
             <Input
               disabled={isLoading}
-              className="dark:bg-[#1e1f22] dark:text-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+              className="dark:bg-[#1e1f22] bg-[#e6e6e9] dark:text-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
               value={inviteUrl}
             />
             <Button disabled={isLoading} onClick={onCopy} size="icon">
