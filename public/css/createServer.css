@@ -1,20 +1,23 @@
-.dialogContent::-webkit-scrollbar{
-    width: 6px;
-    background-color: #1a1b1e;
-    height: 6px;
+.dark .dialogContent::-webkit-scrollbar {
+  width: 6px;
+  background-color: #1a1b1e;
+  height: 6px;
+}
+.dialogContent::-webkit-scrollbar {
+  width: 6px;
+  background-color: #b5bac1;
+  height: 6px;
 }
 
-
 .test:hover {
-    background-color: hsl( 228 calc( 1 * 6%) 32.5% / 0.3) !important;
+  background-color: hsl(228 calc(1 * 6%) 32.5% / 0.3) !important;
 }
 
 @keyframes slideInRight {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
+  from {
+    transform: translateX(100%);
   }
-  
+  to {
+    transform: translateX(0);
+  }
+}

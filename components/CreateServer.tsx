@@ -111,7 +111,6 @@ export const CreateServer = () => {
     border: '1px solid hsl( 228 calc( 1 * 6%) 32.5% / 0.48)',
     marginBottom: '8px',
     display: 'flex',
-    color: 'white',
     alignItems: 'center',
     cursor: 'pointer',
     width: '100%',
@@ -196,7 +195,7 @@ export const CreateServer = () => {
                   {(index !== 7 && index !== 8) && (
                     <Button
                       style={customStyles}
-                      className="dark:text-white text-black bg-white dark:bg-[#313338] test"
+                      className="text-black dark:text-white  bg-white dark:bg-[#313338] test"
                       onClick={() => handleButtonClick(index)}
                     >
                       <Image src={buttonContent[key].path} alt={buttonContent[key].text} width={40} height={40} style={imageStyle} />
