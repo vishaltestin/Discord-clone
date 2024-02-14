@@ -7,6 +7,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/components/providers/modal-provider";
+import { SocketProvider } from "@/components/providers/SocketProvider";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,8 +43,12 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="discord-theme"
         >
-          <ModalProvider />
-          {children}
+          <SocketProvider>
+            <ModalProvider />
+            <QueryProvider>
+              {children}
+            </QueryProvider>
+          </SocketProvider>
         </ThemeProvider>
       </body>
     </html>

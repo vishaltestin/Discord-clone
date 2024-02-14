@@ -9,9 +9,11 @@ import { LeaveServerModal } from "../Mod/LeaveServerModal"
 import { DeleteServerModal } from "../Mod/DeleteServerModal"
 import { DeleteChannelModal } from "../Mod/DeleteChannelModal"
 import { EditChannelModal } from "../Mod/EditChannelModal"
+import { MessageFileModal } from "../Mod/MessageFileModal"
+import { DeleteMessageModal } from "../Mod/DeleteMessageModal"
 
 export const ModalProvider = () => {
-    
+
     const [isMounted, setIsMounted] = useState(false)
     useEffect(() => {
         setIsMounted(true)
@@ -22,14 +24,16 @@ export const ModalProvider = () => {
     return (
         <>
             <CreateServerModal />
-            <InviteModal/>
-            <EditServerModal/>
-            <MembersModal/>
-            <CreateChannelModal/>
-            <LeaveServerModal/>
-            <DeleteServerModal/>
-            <DeleteChannelModal/>
-            <EditChannelModal/>
+            <InviteModal />
+            <EditServerModal />
+            <MembersModal />
+            <CreateChannelModal />
+            <LeaveServerModal />
+            <DeleteServerModal />
+            <DeleteChannelModal />
+            <EditChannelModal />
+            <MessageFileModal />
+            <DeleteMessageModal />
         </>
     )
 }
