@@ -9,6 +9,8 @@ import { useChatQuery } from "@/hooks/useChatQuery";
 
 import { ChatWelcome } from "./ChatWelcome";
 import { ChatItem } from "./ChatItem";
+import { useChatSocket } from "@/hooks/useChatSocket";
+import { useChatScroll } from "@/hooks/useChatScrol";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -60,14 +62,14 @@ export const ChatMessages = ({
         paramKey,
         paramValue,
     });
-    // useChatSocket({ queryKey, addKey, updateKey });
-    // useChatScroll({
-    //     chatRef,
-    //     bottomRef,
-    //     loadMore: fetchNextPage,
-    //     shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
-    //     count: data?.pages?.[0]?.items?.length ?? 0,
-    // })
+    useChatSocket({ queryKey, addKey, updateKey });
+    useChatScroll({
+        chatRef,
+        bottomRef,
+        loadMore: fetchNextPage,
+        shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
+        count: data?.pages?.[0]?.items?.length ?? 0,
+    })
     // @ts-ignore
     if (status === "loading") {
         return (

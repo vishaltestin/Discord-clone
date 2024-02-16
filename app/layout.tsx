@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
         inter.className,
-        "bg-white dark:bg-[#313338]"
+        "bg-white dark:bg-[#313338] h-screen"
       )}>
         <NextSSRPlugin
           /**

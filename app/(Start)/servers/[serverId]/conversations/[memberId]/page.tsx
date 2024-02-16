@@ -4,6 +4,9 @@ import { db } from "@/lib/db";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { presentProfile } from "@/lib/Profile";
 import { ChatHeader } from "@/components/chat/ChatHeader";
+import { MediaRoom } from "@/components/mediaRoom";
+import { ChatMessages } from "@/components/chat/ChatMessages";
+import { ChatInput } from "@/components/chat/ChatInput";
 
 interface MemberIdPageProps {
   params: {
@@ -49,7 +52,7 @@ const MemberIdPage = async ({
 
   const otherMember = memberOne.profileId === profile.id ? memberTwo : memberOne;
 
-  return ( 
+  return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader
         imageUrl={otherMember.profile.imageUrl}
@@ -57,7 +60,7 @@ const MemberIdPage = async ({
         serverId={params.serverId}
         type="conversation"
       />
-      {/* {searchParams.video && (
+      {searchParams.video && (
         <MediaRoom
           chatId={conversation.id}
           video={true}
@@ -88,9 +91,9 @@ const MemberIdPage = async ({
             }}
           />
         </>
-      )} */}
+      )}
     </div>
-   );
+  );
 }
- 
+
 export default MemberIdPage;
