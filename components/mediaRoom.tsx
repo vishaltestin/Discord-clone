@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 import { LiveKitRoom, VideoConference } from "@livekit/components-react";
 import "@livekit/components-styles";
-import { Channel } from "@prisma/client";
 import { Loader2 } from "lucide-react";
-import { presentProfile } from "@/lib/Profile";
 import axios from "axios";
 
 interface MediaRoomProps {
@@ -19,53 +17,30 @@ export const MediaRoom = ({
     video,
     audio
 }: MediaRoomProps) => {
-    console.log("exectued")
-    console.log(chatId)
-    // const user = await presentProfile();
     const [token, setToken] = useState("");
 
     useEffect(() => {
-        // if (!user?.name || 'TestingName') return;
-
-        // const name = `${user.name}`;
-        const name = 'vishal';
-
-        (async () => {
+        const fetchData = async () => {
             try {
-                const resp = await fetch(`/api/livekit?room=${chatId}&username=${name}`);
-                const data = await resp.json();
-                setToken(data.token);
+                const userProfileResponse = await axios.get("/api/user");
+                const userProfile = userProfileResponse.data
+                if (!userProfile?.displayName) {
+                    return;
+                }
+
+                const name = `${userProfile.displayName}`;
+                console.log(name)
+
+                const resp = await axios.get(`/api/livekit?room=${chatId}&username=${name}`);
+                console.log(resp.data.token)
+                setToken(resp.data.token);
             } catch (e) {
-                console.log(e);
+                console.log(e, "testing");
             }
-        })()
+        };
+
+        fetchData()
     }, [chatId]);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const userProfileResponse = await axios.get("/api/user");
-    //             console.log(userProfileResponse)
-
-    //             const userProfile = userProfileResponse.data
-    //             if (!userProfile?.displayName) {
-    //                 return;
-    //             }
-
-    //             const name = `${userProfile.displayName}`;
-    //             console.log(name)
-
-    //             const resp = await axios.get(`/api/livekit?room=${chatId}&username=${name}`);
-    //             // setToken(resp.data.token);
-    //             console.log(resp.data.token)
-    //             setToken(resp.data.token);
-    //         } catch (e) {
-    //             console.log(e, "testing");
-    //         }
-    //     };
-
-    //     fetchData()
-    // }, []);
 
 
     if (token === "") {
