@@ -1,4 +1,5 @@
 import { NextApiRequest } from "next";
+
 import { NextApiResponseServerIo } from "@/types/types";
 
 import { db } from "@/lib/db";
@@ -13,14 +14,12 @@ export default async function handler(
     }
 
     try {
-        console.log("another one");
-        
-        const profile = await presentProfile();
-        console.log(profile,"test bro")
+        // const profile = await presentProfile();
         const { content, fileUrl } = req.body;
-        const { serverId, channelId } = req.query;
+        const { serverId, channelId, USERID } = req.query;
 
-        if (!profile) {
+
+        if (!USERID) {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
@@ -41,7 +40,7 @@ export default async function handler(
                 id: serverId as string,
                 members: {
                     some: {
-                        profileId: profile.id
+                        profileId: String(USERID)
                     }
                 }
             },
@@ -65,7 +64,7 @@ export default async function handler(
             return res.status(404).json({ message: "Channel not found" });
         }
 
-        const member = server.members.find((member) => member.profileId === profile.id);
+        const member = server.members.find((member) => member.profileId === USERID);
 
         if (!member) {
             return res.status(404).json({ message: "Member not found" });

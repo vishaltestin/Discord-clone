@@ -24,6 +24,7 @@ const ChannelIdPage = async ({
     return redirect('/login')
   }
 
+  const USERID = profile.id
   const channel = await db.channel.findUnique({
     where: {
       id: params.channelId,
@@ -71,6 +72,7 @@ const ChannelIdPage = async ({
             query={{
               channelId: channel.id,
               serverId: channel.serverId,
+              USERID: USERID
             }}
           />
         </>

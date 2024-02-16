@@ -4,7 +4,6 @@ import { db } from "./db";
 export const presentProfile = async () => {
     try {
         const userId = getDataFromToken();
-        console.log(userId,"fdfskjfksdjfksjdf")
         if (!userId) {
             return null
         }
