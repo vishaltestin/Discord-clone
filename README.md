@@ -66,7 +66,15 @@ Before you begin, ensure you have met the following requirements:
 
    Replace These Fields With Your Keys and values
 
-5. Start the application:
+5. Run Prisma commands:
+   Run the following Prisma commands for generating necessary files and updating the database:
+
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
+
+6. Start the application:
 
    ```bash
    npm run dev
