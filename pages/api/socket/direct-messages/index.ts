@@ -1,7 +1,6 @@
 import { NextApiRequest } from "next";
 import { NextApiResponseServerIo } from "@/types/types";
 import { db } from "@/lib/db";
-import { presentProfile } from "@/lib/Profile";
 
 export default async function handler(
     req: NextApiRequest,
@@ -12,12 +11,10 @@ export default async function handler(
     }
 
     try {
-        const profile = await presentProfile();
-        console.log(profile,"vishal test")
         const { content, fileUrl } = req.body;
-        const { conversationId } = req.query;
+        const { conversationId,USERID } = req.query;
 
-        if (!profile) {
+        if (!USERID) {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
@@ -36,12 +33,12 @@ export default async function handler(
                 OR: [
                     {
                         memberOne: {
-                            profileId: profile.id,
+                            profileId: String(USERID),
                         }
                     },
                     {
                         memberTwo: {
-                            profileId: profile.id,
+                            profileId: String(USERID),
                         }
                     }
                 ]
@@ -64,7 +61,7 @@ export default async function handler(
             return res.status(404).json({ message: "Conversation not found" });
         }
 
-        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo
+        const member = conversation.memberOne.profileId === String(USERID) ? conversation.memberOne : conversation.memberTwo
 
         if (!member) {
             return res.status(404).json({ message: "Member not found" });

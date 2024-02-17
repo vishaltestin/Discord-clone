@@ -27,7 +27,7 @@ const MemberIdPage = async ({
   if (!profile) {
     return redirect('/login')
   }
-
+  const USERID = profile.id
   const currentMember = await db.member.findFirst({
     where: {
       serverId: params.serverId,
@@ -88,6 +88,7 @@ const MemberIdPage = async ({
             apiUrl="/api/socket/direct-messages"
             query={{
               conversationId: conversation.id,
+              USERID: USERID
             }}
           />
         </>
