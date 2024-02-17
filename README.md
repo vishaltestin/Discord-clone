@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Discord Clone
+
+Welcome to the Discord Clone project! This is a fully functional Discord clone that aims to replicate the core features of the popular communication platform, Discord. Whether you're a developer looking to contribute, or a user interested in trying out the clone, we're excited to have you on board!
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+## Features
+
+- Real-time chat functionality
+- Voice and video calls
+- Server creation and management
+- User authentication and authorization
+- Message and emojis
+- and more...
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Before you begin, ensure you have met the following requirements:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js installed (version 14 or higher)
+- npm (Node Package Manager) installed
+- Postgres installed and running locally or remotely
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/vishal32004/Discord-clone.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Change into the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd discord-clone
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Install dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Create a `.env` file in the root directory and set up the following variables:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```
+   DATABASE_URL=YOUTDATABASEURL
+   JWT_SECRET=YOURSECRETKEY
+   UPLOADTHING_SECRET=UPLOADTHINGSETUP
+   UPLOADTHING_APP_ID=UPLOADTHINGSETUP
+   LIVEKIT_API_KEY=YOURLIVEKITKEY
+   LIVEKIT_API_SECRET=YOURLIVEKITSECRETKEY
+   NEXT_PUBLIC_LIVEKIT_URL=YOURLIVEKITURL
+   ```
+
+   Replace These Fields With Your Keys and values
+
+5. Start the application:
+
+   ```bash
+   npm run dev
+   ```
+
+   The application will be accessible at `http://localhost:3000` by default.
+
+## Usage
+
+- Register an account or log in if you already have one.
+- Create or join servers.
+- Explore the various channels within servers.
+- Enjoy real-time text, voice, and video communication.
+
+## Acknowledgments
+
+- Thanks to the developers of Discord for providing inspiration for this project.
+- Special thanks to the open-source community for their valuable contributions.
+
+Happy coding! 🚀
