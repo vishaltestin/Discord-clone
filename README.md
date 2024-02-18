@@ -9,7 +9,6 @@ Welcome to the Discord Clone project! This is a fully functional Discord clone t
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [Acknowledgments](#acknowledgments)
 
 ## Features
